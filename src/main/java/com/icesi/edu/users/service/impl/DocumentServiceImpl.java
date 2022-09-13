@@ -17,6 +17,9 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static com.icesi.edu.users.constant.DocumentErrorCode.CODE_01;
+import static com.icesi.edu.users.constant.DocumentErrorCode.CODE_02;
+
 @Service
 @RequiredArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
@@ -34,8 +37,9 @@ public class DocumentServiceImpl implements DocumentService {
         if(document.isPresent()){
             return document.get();
         }
-        return null;
+        throw new DocumentException(HttpStatus.NOT_FOUND, new DocumentError(CODE_01,CODE_01.getMessage()));
     }
+
 
     @Override
     public List<Document> getDocuments() {
