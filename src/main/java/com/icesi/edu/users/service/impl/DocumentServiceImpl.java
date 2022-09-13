@@ -17,8 +17,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static com.icesi.edu.users.constant.DocumentErrorCode.CODE_01;
-import static com.icesi.edu.users.constant.DocumentErrorCode.CODE_02;
+import static com.icesi.edu.users.constant.DocumentErrorCode.*;
+import static com.icesi.edu.users.constant.DocumentStatus.APPROVED;
 
 @Service
 @RequiredArgsConstructor
@@ -48,7 +48,14 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document updateDocument(Document document) {
+        verifyDocumentIsNotApproved(document);
         return documentRepository.save(document);
+    }
+
+    private void verifyDocumentIsNotApproved(Document document){
+        if(document.getStatus().equals(APPROVED)){
+            throw new DocumentException(HttpStatus.BAD_REQUEST, new DocumentError(CODE_03,CODE_03.getMessage()));
+        }
     }
 
 
