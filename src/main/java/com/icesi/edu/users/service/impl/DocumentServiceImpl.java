@@ -48,6 +48,7 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document updateDocument(Document document) {
+        validateStatusDocument(document.getDocumentId());
         return documentRepository.save(document);
     }
 
