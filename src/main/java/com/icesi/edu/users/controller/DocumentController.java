@@ -1,10 +1,14 @@
 package com.icesi.edu.users.controller;
 
 import com.icesi.edu.users.api.DocumentAPI;
+import com.icesi.edu.users.constant.DocumentErrorCode;
 import com.icesi.edu.users.dto.DocumentDTO;
+import com.icesi.edu.users.error.exception.DocumentError;
+import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.mapper.DocumentMapper;
 import com.icesi.edu.users.service.DocumentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,7 +25,13 @@ public class DocumentController implements DocumentAPI {
 
     @Override
     public DocumentDTO createDocument(DocumentDTO documentDTO) {
+        validateNameOnlyLettersAndSpaces(documentDTO);
         return documentMapper.fromDocument(documentService.createDocument(documentMapper.fromDTO(documentDTO)));
+    }
+
+    private void validateNameOnlyLettersAndSpaces(DocumentDTO documentDTO) {
+        if (!documentDTO.getName().matches("[a-zA-Z0-9 ]+"))
+            throw new DocumentException(HttpStatus.BAD_REQUEST, new DocumentError(DocumentErrorCode.CODE_02, DocumentErrorCode.CODE_02.getMessage()));
     }
 
     @Override
