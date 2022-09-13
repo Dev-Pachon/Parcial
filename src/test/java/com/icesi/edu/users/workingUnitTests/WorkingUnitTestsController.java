@@ -2,7 +2,7 @@ package com.icesi.edu.users.workingUnitTests;
 
 import com.icesi.edu.users.constant.DocumentStatus;
 import com.icesi.edu.users.controller.DocumentController;
-import com.icesi.edu.users.dto.DocumentDTO;
+import com.icesi.edu.users.constant.dto.DocumentDTO;
 import com.icesi.edu.users.error.exception.DocumentError;
 import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.mapper.DocumentMapper;

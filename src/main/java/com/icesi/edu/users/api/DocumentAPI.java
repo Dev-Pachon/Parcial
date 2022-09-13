@@ -1,25 +1,25 @@
 package com.icesi.edu.users.api;
 
-import com.icesi.edu.users.dto.DocumentDTO;
+import com.icesi.edu.users.constant.dto.DocumentDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping
+@RequestMapping("/documents")
 public interface DocumentAPI {
 
     @PostMapping
-    DocumentDTO createDocument(@RequestBody DocumentDTO documentDTO);
+    public DocumentDTO createDocument(@RequestBody DocumentDTO documentDTO);
+
+    @GetMapping("/{docId}")
+    public DocumentDTO getDocument(@PathVariable UUID documentId);
 
     @GetMapping
-    DocumentDTO getDocument(@PathVariable UUID documentId);
+    public List<DocumentDTO> getDocuments();
 
-    @GetMapping
-    List<DocumentDTO> getDocuments();
-
-    @PostMapping
-    DocumentDTO updateDocument(@PathVariable UUID documentId, @RequestBody DocumentDTO documentDTO);
+    @PostMapping("/{docId}")
+    public DocumentDTO updateDocument(@PathVariable UUID documentId, @RequestBody DocumentDTO documentDTO);
 
 
 }

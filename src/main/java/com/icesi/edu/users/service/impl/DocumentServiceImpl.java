@@ -33,8 +33,7 @@ public class DocumentServiceImpl implements DocumentService {
         Optional<Document> document = documentRepository.findById(documentId);
         if(document.isPresent()){
             return document.get();
-        }
-        return null;
+        }else throw new DocumentException(HttpStatus.NOT_FOUND,new DocumentError(DocumentErrorCode.CODE_01,DocumentErrorCode.CODE_01.getMessage()));
     }
 
     @Override
