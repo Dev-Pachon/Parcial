@@ -9,7 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class DocumentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DocumentApplication.class, args);
+
+			SpringApplication.run(DocumentApplication.class, args);
 	}
 
 }

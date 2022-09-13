@@ -2,6 +2,7 @@ package com.icesi.edu.users.service.impl;
 
 
 import com.icesi.edu.users.constant.DocumentErrorCode;
+import com.icesi.edu.users.dto.DocumentDTO;
 import com.icesi.edu.users.error.exception.DocumentError;
 import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.model.Document;
@@ -24,17 +25,13 @@ public class DocumentServiceImpl implements DocumentService {
     private final DocumentRepository documentRepository;
 
     @Override
-    public Document createDocument(Document document) {
-        return documentRepository.save(document);
+    public Document createDocument(Document documentDTO) {
+        return documentRepository.save(documentDTO);
     }
 
     @Override
     public Document getDocument(UUID documentId) {
-        Optional<Document> document = documentRepository.findById(documentId);
-        if(document.isPresent()){
-            return document.get();
-        }
-        return null;
+        return documentRepository.findById(documentId).orElse(null);
     }
 
     @Override
