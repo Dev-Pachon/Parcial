@@ -10,7 +10,7 @@ public enum DocumentStatus {
     APPROVED("approved");
 
 
-    private String status;
+    public String status;
 
 
 }

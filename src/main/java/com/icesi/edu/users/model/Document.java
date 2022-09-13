@@ -14,10 +14,9 @@ import javax.persistence.Table;
 import java.util.UUID;
 
 @Data
-@Table(name = "`user`")
+@Table
 @Entity
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class Document {
 

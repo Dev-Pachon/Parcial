@@ -3,10 +3,12 @@ package com.icesi.edu.users.error.exception;
 import com.icesi.edu.users.constant.DocumentErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 
 @Data
+@Getter
 @AllArgsConstructor
 public class DocumentError {
-    private DocumentErrorCode code;
-    private String message;
+    public DocumentErrorCode code;
+    public String message;
 }
