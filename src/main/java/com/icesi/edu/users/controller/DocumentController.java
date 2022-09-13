@@ -5,6 +5,7 @@ import com.icesi.edu.users.dto.DocumentDTO;
 import com.icesi.edu.users.mapper.DocumentMapper;
 import com.icesi.edu.users.service.DocumentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
+@Component
 public class DocumentController implements DocumentAPI {
 
     private final DocumentMapper documentMapper;
