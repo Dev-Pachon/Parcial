@@ -2,12 +2,16 @@ package com.icesi.edu.users.service.impl;
 
 
 import com.icesi.edu.users.constant.DocumentErrorCode;
+import com.icesi.edu.users.constant.DocumentStatus;
+import com.icesi.edu.users.dto.DocumentDTO;
 import com.icesi.edu.users.error.exception.DocumentError;
 import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.model.Document;
 import com.icesi.edu.users.repository.DocumentRepository;
 import com.icesi.edu.users.service.DocumentService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +22,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
+@AllArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
 
     private final DocumentRepository documentRepository;
@@ -34,7 +39,7 @@ public class DocumentServiceImpl implements DocumentService {
         if(document.isPresent()){
             return document.get();
         }
-        return null;
+        throw new DocumentException(HttpStatus.NOT_FOUND, new DocumentError(DocumentErrorCode.CODE_01, DocumentErrorCode.CODE_01.getMessage()));
     }
 
     @Override
@@ -44,8 +49,14 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document updateDocument(Document document) {
+        documentShouldnotUpdate(document);
         return documentRepository.save(document);
     }
 
+    public void documentShouldnotUpdate(Document document){
+        if (document.getStatus() == DocumentStatus.APPROVED){
+            throw new DocumentException(HttpStatus.FORBIDDEN, new DocumentError(DocumentErrorCode.CODE_03, DocumentErrorCode.CODE_03.getMessage()));
+        }
+    }
 
 }
