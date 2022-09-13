@@ -1,7 +1,7 @@
 # Parcial computacion 2022
 
 
-## PARA SUBIR EL PARCIAL SUBAN LA RAMA CON SU CODIGO, 
+## PARA SUBIR EL PARCIAL SUBAN LA RAMA CON SU CODIGO 
 
 ## 1. Arreglar la aplicacion
 ### a. Verificar que la aplicación inicie

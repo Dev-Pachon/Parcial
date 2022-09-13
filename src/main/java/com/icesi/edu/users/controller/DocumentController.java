@@ -4,20 +4,24 @@ import com.icesi.edu.users.api.DocumentAPI;
 import com.icesi.edu.users.dto.DocumentDTO;
 import com.icesi.edu.users.mapper.DocumentMapper;
 import com.icesi.edu.users.service.DocumentService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RestController
 public class DocumentController implements DocumentAPI {
 
-    private final DocumentMapper documentMapper;
+    public final DocumentMapper documentMapper;
 
-    private final DocumentService documentService;
+    public final DocumentService documentService;
 
     @Override
     public DocumentDTO createDocument(DocumentDTO documentDTO) {
