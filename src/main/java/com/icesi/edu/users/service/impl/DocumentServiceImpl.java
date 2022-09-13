@@ -34,7 +34,7 @@ public class DocumentServiceImpl implements DocumentService {
         if(document.isPresent()){
             return document.get();
         }
-        return null;
+        throw new DocumentException(HttpStatus.NOT_FOUND, new DocumentError(DocumentErrorCode.CODE_01, DocumentErrorCode.CODE_01.getMessage()));
     }
 
     @Override
