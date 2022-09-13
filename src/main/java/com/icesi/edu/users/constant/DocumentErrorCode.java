@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public enum DocumentErrorCode {
 
-    CODE_01("fix this");
+    CODE_01("fix this"), CODE_02("change this");
 
     private String message;
 }
