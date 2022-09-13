@@ -30,7 +30,7 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document getDocument(UUID documentId) {
-        Optional<Document> document = documentRepository.findById(documentId);
+        Optional<Document> document = Optional.ofNullable(documentRepository.findById(documentId).orElse(null));
         if(document.isPresent()){
             return document.get();
         }
