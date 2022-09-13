@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping
+@RequestMapping("/documents")
 public interface DocumentAPI {
 
-    @PostMapping
+    @PostMapping()
     DocumentDTO createDocument(@RequestBody DocumentDTO documentDTO);
 
-    @GetMapping
+    @GetMapping("/{documentId}")
     DocumentDTO getDocument(@PathVariable UUID documentId);
 
-    @GetMapping
+    @GetMapping()
     List<DocumentDTO> getDocuments();
 
-    @PostMapping
+    @PostMapping("/{documentId}")
     DocumentDTO updateDocument(@PathVariable UUID documentId, @RequestBody DocumentDTO documentDTO);
 
 
