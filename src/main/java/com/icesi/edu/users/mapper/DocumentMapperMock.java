@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Component
+
 public class DocumentMapperMock implements DocumentMapper {
     @Override
     public Document fromDTO(DocumentDTO documentDTO) {
