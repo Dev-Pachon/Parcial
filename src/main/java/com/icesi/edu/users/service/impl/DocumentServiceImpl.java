@@ -2,6 +2,7 @@ package com.icesi.edu.users.service.impl;
 
 
 import com.icesi.edu.users.constant.DocumentErrorCode;
+import com.icesi.edu.users.constant.DocumentStatus;
 import com.icesi.edu.users.error.exception.DocumentError;
 import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.model.Document;
@@ -31,7 +32,7 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public Document getDocument(UUID documentId) {
         Optional<Document> document = documentRepository.findById(documentId);
-        if(document.isPresent()){
+        if (document.isPresent()) {
             return document.get();
         }
         return null;
@@ -44,8 +45,10 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document updateDocument(Document document) {
-        return documentRepository.save(document);
+        if (document.getStatus() != DocumentStatus.APPROVED) {
+            return documentRepository.save(document);
+        }else{
+            throw new DocumentException(HttpStatus.ACCEPTED, new DocumentError(DocumentErrorCode.CODE_01, "The document has already been approved"));
+        }
     }
-
-
 }

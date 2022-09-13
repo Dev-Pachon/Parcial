@@ -1,5 +1,7 @@
 package com.icesi.edu.users.config;
 
+import com.icesi.edu.users.mapper.DocumentMapperImpl;
+import com.icesi.edu.users.mapper.DocumentMapperMock;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,4 @@ public class LiquibaseConfig {
         liquibase.setDataSource(dataSource);
         return liquibase;
     }
-
-
 }

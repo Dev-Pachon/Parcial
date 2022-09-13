@@ -12,14 +12,15 @@ public interface DocumentAPI {
     @PostMapping
     DocumentDTO createDocument(@RequestBody DocumentDTO documentDTO);
 
-    @GetMapping
+
+    @GetMapping("/{documentId}")
     DocumentDTO getDocument(@PathVariable UUID documentId);
 
     @GetMapping
     List<DocumentDTO> getDocuments();
 
-    @PostMapping
-    DocumentDTO updateDocument(@PathVariable UUID documentId, @RequestBody DocumentDTO documentDTO);
 
+    @PostMapping("/{documentId}")
+    DocumentDTO updateDocument(@PathVariable UUID documentId, @RequestBody DocumentDTO documentDTO);
 
 }
