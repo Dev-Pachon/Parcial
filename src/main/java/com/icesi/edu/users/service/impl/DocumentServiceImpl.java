@@ -8,6 +8,7 @@ import com.icesi.edu.users.model.Document;
 import com.icesi.edu.users.repository.DocumentRepository;
 import com.icesi.edu.users.service.DocumentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
+@Primary
 public class DocumentServiceImpl implements DocumentService {
 
     private final DocumentRepository documentRepository;
@@ -33,8 +35,9 @@ public class DocumentServiceImpl implements DocumentService {
         Optional<Document> document = documentRepository.findById(documentId);
         if(document.isPresent()){
             return document.get();
+        } else {
+            throw new DocumentException(HttpStatus.NOT_FOUND, new DocumentError(DocumentErrorCode.CODE_01, "Document not found"));
         }
-        return null;
     }
 
     @Override
@@ -46,6 +49,5 @@ public class DocumentServiceImpl implements DocumentService {
     public Document updateDocument(Document document) {
         return documentRepository.save(document);
     }
-
 
 }

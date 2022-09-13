@@ -1,16 +1,22 @@
 package com.icesi.edu.users.controller;
 
 import com.icesi.edu.users.api.DocumentAPI;
+import com.icesi.edu.users.constant.DocumentErrorCode;
 import com.icesi.edu.users.dto.DocumentDTO;
+import com.icesi.edu.users.error.exception.DocumentError;
+import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.mapper.DocumentMapper;
 import com.icesi.edu.users.service.DocumentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Component
 @RequiredArgsConstructor
 @RestController
 public class DocumentController implements DocumentAPI {
@@ -21,6 +27,7 @@ public class DocumentController implements DocumentAPI {
 
     @Override
     public DocumentDTO createDocument(DocumentDTO documentDTO) {
+        verifyName(documentDTO);
         return documentMapper.fromDocument(documentService.createDocument(documentMapper.fromDTO(documentDTO)));
     }
 
@@ -39,4 +46,9 @@ public class DocumentController implements DocumentAPI {
         return documentMapper.fromDocument(documentService.updateDocument(documentMapper.fromDTO(documentId,documentDTO)));
     }
 
+    private void verifyName(DocumentDTO documentDTO) throws DocumentException {
+        if (documentDTO == null || !documentDTO.getName().matches("[A-Za-z]")) {
+            throw new DocumentException(HttpStatus.BAD_REQUEST, new DocumentError(DocumentErrorCode.CODE_02, "Only letters and spaces are allowed in name"));
+        }
+    }
 }

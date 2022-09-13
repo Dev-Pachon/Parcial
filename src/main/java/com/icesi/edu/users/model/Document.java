@@ -21,8 +21,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Document {
 
-    @Type(type = "org.hibernate.type.UUIDCharType")
+
     @Id
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID documentId;
 
     private String name;

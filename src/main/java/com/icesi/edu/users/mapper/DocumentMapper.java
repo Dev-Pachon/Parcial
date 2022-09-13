@@ -4,6 +4,7 @@ import com.icesi.edu.users.dto.DocumentDTO;
 import com.icesi.edu.users.model.Document;
 import org.mapstruct.Mapper;
 
+
 import java.util.UUID;
 
 @Mapper(componentModel = "spring")
