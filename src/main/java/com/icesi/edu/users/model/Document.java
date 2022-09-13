@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import java.util.UUID;
 
 @Data
-@Table(name = "`user`")
+@Table
 @Entity
 @Builder
 @NoArgsConstructor
@@ -35,7 +35,7 @@ public class Document {
 
     @PrePersist
     public void generateId() {
-        this.documentId = UUID.randomUUID();
+        this.documentId  = UUID.randomUUID();
     }
 
 }

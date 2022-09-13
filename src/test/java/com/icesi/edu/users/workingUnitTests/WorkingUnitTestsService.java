@@ -9,6 +9,7 @@ import com.icesi.edu.users.repository.DocumentRepository;
 import com.icesi.edu.users.service.DocumentService;
 import com.icesi.edu.users.service.impl.DocumentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
 import java.util.Optional;
@@ -34,12 +35,13 @@ public class WorkingUnitTestsService {
         documentService = new DocumentServiceImpl(documentRepository);
     }
 
-    public void testDocumentNotFound(){
+    @Test
+    public void testDocumentNotFound() {
         when(documentRepository.findById(any())).thenReturn(Optional.empty());
         try {
             documentService.getDocument(DOCUMENT_UUID);
             fail();
-        }catch (DocumentException e){
+        } catch (DocumentException e) {
             assertEquals(HttpStatus.NOT_FOUND, e.getHttpStatus());
             assertNotNull(e.getError());
             DocumentError error = e.getError();
@@ -47,5 +49,4 @@ public class WorkingUnitTestsService {
             assertEquals("CODE_01", error.getCode().name());
         }
     }
-
 }
