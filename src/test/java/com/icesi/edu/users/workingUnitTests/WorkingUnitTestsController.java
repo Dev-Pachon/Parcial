@@ -46,7 +46,7 @@ public class WorkingUnitTestsController {
             assertEquals("CODE_02", error.getCode().name());
         }
     }
-
+    @Test
     private DocumentDTO createDummyDocument(String name, DocumentStatus documentStatus) {
         return DocumentDTO.builder().name(name).documentId(DOCUMENT_UUID).status(documentStatus).text("random").priority(1).build();
     }
