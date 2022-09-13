@@ -1,10 +1,14 @@
 package com.icesi.edu.users.controller;
 
 import com.icesi.edu.users.api.DocumentAPI;
+import com.icesi.edu.users.constant.DocumentErrorCode;
 import com.icesi.edu.users.dto.DocumentDTO;
+import com.icesi.edu.users.error.exception.DocumentError;
+import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.mapper.DocumentMapper;
 import com.icesi.edu.users.service.DocumentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,6 +25,8 @@ public class DocumentController implements DocumentAPI {
 
     @Override
     public DocumentDTO createDocument(DocumentDTO documentDTO) {
+        validDocumentNameFormat(documentDTO.getName());
+
         return documentMapper.fromDocument(documentService.createDocument(documentMapper.fromDTO(documentDTO)));
     }
 
@@ -37,6 +43,13 @@ public class DocumentController implements DocumentAPI {
     @Override
     public DocumentDTO updateDocument(UUID documentId, DocumentDTO documentDTO) {
         return documentMapper.fromDocument(documentService.updateDocument(documentMapper.fromDTO(documentId,documentDTO)));
+    }
+
+    private void validDocumentNameFormat(String name) {
+        String re = "^[a-zA-z\\s]*$";
+        if (!name.matches(re))
+            throw new DocumentException(HttpStatus.BAD_REQUEST,
+                    new DocumentError(DocumentErrorCode.CODE_02, DocumentErrorCode.CODE_02.getMessage()));
     }
 
 }

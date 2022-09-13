@@ -1,8 +1,10 @@
 package com.icesi.edu.users.constant;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public enum DocumentStatus {
 
     CREATED("created"),
@@ -10,7 +12,7 @@ public enum DocumentStatus {
     APPROVED("approved");
 
 
-    private String status;
+    private final String status;
 
 
 }

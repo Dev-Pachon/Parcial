@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public enum DocumentErrorCode {
 
-    CODE_01("fix this");
+    CODE_01("Document not found"), CODE_02("Only letters and spaces are allowed in name");
 
-    private String message;
+    private final String message;
 }
