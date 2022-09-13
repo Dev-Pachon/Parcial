@@ -2,6 +2,7 @@ package com.icesi.edu.users.service.impl;
 
 
 import com.icesi.edu.users.constant.DocumentErrorCode;
+import com.icesi.edu.users.constant.DocumentStatus;
 import com.icesi.edu.users.error.exception.DocumentError;
 import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.model.Document;
@@ -44,8 +45,14 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document updateDocument(Document document) {
+        validateDocumentNotApproved(document.getStatus());
+
         return documentRepository.save(document);
     }
 
-
+    private void validateDocumentNotApproved(DocumentStatus status) {
+        if (status.equals(DocumentStatus.APPROVED))
+            throw new DocumentException(HttpStatus.METHOD_NOT_ALLOWED,
+                    new DocumentError(DocumentErrorCode.CODE_03, DocumentErrorCode.CODE_03.getMessage()));
+    }
 }
