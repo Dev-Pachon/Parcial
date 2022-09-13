@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "28c3d83e-297b-430c-a69a-097e21d6af21",
+		"name": "Parcial Comp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3032961"
+	},
+	"item": [
+		{
+			"name": "Create Document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"document1\",\r\n    \"text\": \"test text\",\r\n    \"priority\": 1,\r\n    \"status\": \"CREATED\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/documents",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documents"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Document",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"document1\",\r\n    \"text\": \"test text\",\r\n    \"priority\": 1,\r\n    \"status\": \"CREATED\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/documents",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"documents"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 13 Sep 2022 02:39:07 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"documentId\": \"0a26da1a-6673-4b7e-9b12-84fa6fe0f25a\",\n    \"name\": \"document1\",\n    \"text\": \"test text\",\n    \"priority\": 1,\n    \"status\": \"CREATED\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"documentId\": \"0a26da1a-6673-4b7e-9b12-84fa6fe0f25a\",\r\n        \"name\": \"document1\",\r\n        \"text\": \"updated test text\",\r\n        \"priority\": 1,\r\n        \"status\": \"CREATED\"\r\n    }"
+				},
+				"url": {
+					"raw": "localhost:8080/documents/:documentId",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documents",
+						":documentId"
+					],
+					"variable": [
+						{
+							"key": "documentId",
+							"value": "0a26da1a-6673-4b7e-9b12-84fa6fe0f25a"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Document Copy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"documentId\": \"0a26da1a-6673-4b7e-9b12-84fa6fe0f25a\",\r\n        \"name\": \"document1\",\r\n        \"text\": \"updated test text\",\r\n        \"priority\": 1,\r\n        \"status\": \"CREATED\"\r\n    }"
+						},
+						"url": {
+							"raw": "localhost:8080/documents/:documentId",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"documents",
+								":documentId"
+							],
+							"variable": [
+								{
+									"key": "documentId",
+									"value": "0a26da1a-6673-4b7e-9b12-84fa6fe0f25a"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 13 Sep 2022 02:41:27 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"documentId\": \"0a26da1a-6673-4b7e-9b12-84fa6fe0f25a\",\n    \"name\": \"document1\",\n    \"text\": \"updated test text\",\n    \"priority\": 1,\n    \"status\": \"CREATED\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all documents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/documents",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documents"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all documents",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/documents",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"documents"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 13 Sep 2022 02:39:33 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"documentId\": \"0a26da1a-6673-4b7e-9b12-84fa6fe0f25a\",\n        \"name\": \"document1\",\n        \"text\": \"test text\",\n        \"priority\": 1,\n        \"status\": \"CREATED\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Document",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/documents/:documentId",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documents",
+						":documentId"
+					],
+					"variable": [
+						{
+							"key": "documentId",
+							"value": "0a26da1a-6673-4b7e-9b12-84fa6fe0f25a"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Document",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/documents/:documentId",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"documents",
+								":documentId"
+							],
+							"variable": [
+								{
+									"key": "documentId",
+									"value": "0a26da1a-6673-4b7e-9b12-84fa6fe0f25a"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 13 Sep 2022 02:43:05 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"documentId\": \"0a26da1a-6673-4b7e-9b12-84fa6fe0f25a\",\n    \"name\": \"document1\",\n    \"text\": \"updated test text\",\n    \"priority\": 1,\n    \"status\": \"CREATED\"\n}"
+				},
+				{
+					"name": "Get Document",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/documents/:documentId",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"documents",
+								":documentId"
+							],
+							"variable": [
+								{
+									"key": "documentId",
+									"value": "0a26da1a-6673-4b7e-9b12-84fa6fe0f25a"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 13 Sep 2022 02:57:27 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"CODE_01\",\n    \"message\": \"fix this\"\n}"
+				}
+			]
+		}
+	]
+}

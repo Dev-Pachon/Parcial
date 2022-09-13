@@ -2,6 +2,7 @@ package com.icesi.edu.users.service.impl;
 
 
 import com.icesi.edu.users.constant.DocumentErrorCode;
+import com.icesi.edu.users.constant.DocumentStatus;
 import com.icesi.edu.users.error.exception.DocumentError;
 import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.model.Document;
@@ -34,7 +35,7 @@ public class DocumentServiceImpl implements DocumentService {
         if(document.isPresent()){
             return document.get();
         }
-        return null;
+        throw new DocumentException(HttpStatus.NOT_FOUND, new DocumentError(DocumentErrorCode.CODE_01.name(), DocumentErrorCode.CODE_01.getMessage()));
     }
 
     @Override
@@ -44,8 +45,18 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document updateDocument(Document document) {
+    	exceptionIsThrownWhenTryingToUpdateDocumentWithStatusApproved(document);
         return documentRepository.save(document);
     }
 
-
+    private void exceptionIsThrownWhenTryingToUpdateDocumentWithStatusApproved(Document document) {
+    	Optional<Document> oldDocument = documentRepository.findById(document.getDocumentId());
+        if(oldDocument.isPresent()){
+            Document doc = oldDocument.get();
+        	DocumentStatus status = doc.getStatus();
+        	if(DocumentStatus.APPROVED.getStatus().equals(status.getStatus())) {
+        		throw new DocumentException(HttpStatus.BAD_REQUEST, new DocumentError(DocumentErrorCode.CODE_03.name(), DocumentErrorCode.CODE_03.getMessage()));
+        	}
+        }
+    }
 }

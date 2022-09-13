@@ -1,5 +1,6 @@
 package com.icesi.edu.users.workingUnitTests;
 
+import com.icesi.edu.users.constant.DocumentErrorCode;
 import com.icesi.edu.users.constant.DocumentStatus;
 import com.icesi.edu.users.controller.DocumentController;
 import com.icesi.edu.users.dto.DocumentDTO;
@@ -23,7 +24,6 @@ public class WorkingUnitTestsController {
 
     private DocumentController documentController;
     private DocumentMapper documentMapper;
-
     private DocumentService documentService;
 
     @BeforeEach
@@ -42,8 +42,8 @@ public class WorkingUnitTestsController {
             assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
             assertNotNull(e.getError());
             DocumentError error = e.getError();
-            assertEquals("Only letters and spaces are allowed in name", error.getMessage());
-            assertEquals("CODE_02", error.getCode().name());
+            assertEquals(DocumentErrorCode.CODE_02.getMessage(), error.getMessage());
+            assertEquals(DocumentErrorCode.CODE_02.name(), error.getCode());
         }
     }
 

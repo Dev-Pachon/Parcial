@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class DocumentError {
-    private DocumentErrorCode code;
+    private String code;
     private String message;
 }

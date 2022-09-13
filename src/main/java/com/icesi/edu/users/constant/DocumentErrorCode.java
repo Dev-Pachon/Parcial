@@ -7,7 +7,9 @@ import lombok.Getter;
 @Getter
 public enum DocumentErrorCode {
 
-    CODE_01("fix this");
+    CODE_01("Document not found"),
+    CODE_02("Only letters and spaces are allowed in name"),
+    CODE_03("Imposible update, document is approved");
 
     private String message;
 }
