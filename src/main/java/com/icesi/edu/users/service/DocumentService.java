@@ -2,6 +2,7 @@ package com.icesi.edu.users.service;
 
 import com.icesi.edu.users.model.Document;
 
+import javax.print.Doc;
 import java.util.List;
 import java.util.UUID;
 

@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum DocumentStatus {
 
-    CREATED("created"),
-    REVIEW("review"),
-    APPROVED("approved");
+    CREATED("CREATED"),
+    REVIEW("REVIEW"),
+    APPROVED("APPROVED");
 
 
     private String status;

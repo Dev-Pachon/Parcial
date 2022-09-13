@@ -2,6 +2,7 @@ package com.icesi.edu.users.service.impl;
 
 
 import com.icesi.edu.users.constant.DocumentErrorCode;
+import com.icesi.edu.users.constant.DocumentStatus;
 import com.icesi.edu.users.error.exception.DocumentError;
 import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.model.Document;
@@ -10,6 +11,8 @@ import com.icesi.edu.users.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import static com.icesi.edu.users.constant.DocumentErrorCode.*;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -31,10 +34,10 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public Document getDocument(UUID documentId) {
         Optional<Document> document = documentRepository.findById(documentId);
-        if(document.isPresent()){
+        if(document.isPresent())
             return document.get();
-        }
-        return null;
+        else
+            throw new DocumentException(HttpStatus.NOT_FOUND,new DocumentError(CODE_01,CODE_01.getMessage()));
     }
 
     @Override
@@ -44,7 +47,10 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document updateDocument(Document document) {
-        return documentRepository.save(document);
+        if(getDocument(document.getDocumentId()).getStatus() == DocumentStatus.APPROVED)
+            throw new DocumentException(HttpStatus.FORBIDDEN,new DocumentError(CODE_03,CODE_03.getMessage()));
+        else
+            return documentRepository.save(document);
     }
 
 
