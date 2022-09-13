@@ -1,19 +1,15 @@
 package com.icesi.edu.users.workingUnitTests;
 
-import com.icesi.edu.users.constant.DocumentStatus;
-import com.icesi.edu.users.dto.DocumentDTO;
 import com.icesi.edu.users.error.exception.DocumentError;
 import com.icesi.edu.users.error.exception.DocumentException;
-import com.icesi.edu.users.model.Document;
 import com.icesi.edu.users.repository.DocumentRepository;
 import com.icesi.edu.users.service.DocumentService;
 import com.icesi.edu.users.service.impl.DocumentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-
 import java.util.Optional;
 import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -29,11 +25,12 @@ public class WorkingUnitTestsService {
     private DocumentService documentService;
 
     @BeforeEach
-    private void init(){
+    public void init(){
         documentRepository = mock(DocumentRepository.class);
         documentService = new DocumentServiceImpl(documentRepository);
     }
 
+    @Test
     public void testDocumentNotFound(){
         when(documentRepository.findById(any())).thenReturn(Optional.empty());
         try {
