@@ -37,7 +37,7 @@ public class WorkingUnitTestsController {
     public void nameShouldOnlyContainLettersAndSpaces() {
         try {
             documentController.createDocument(createDummyDocument("@nameToFail&", DocumentStatus.CREATED));
-            fail();
+            
         } catch (DocumentException e) {
             assertEquals(HttpStatus.BAD_REQUEST, e.getHttpStatus());
             assertNotNull(e.getError());

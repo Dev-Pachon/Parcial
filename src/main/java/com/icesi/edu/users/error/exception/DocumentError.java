@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DocumentError {
+public class DocumentError extends Throwable {
     private DocumentErrorCode code;
     private String message;
 }

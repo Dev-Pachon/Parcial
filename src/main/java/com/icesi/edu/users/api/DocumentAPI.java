@@ -9,16 +9,16 @@ import java.util.UUID;
 @RequestMapping
 public interface DocumentAPI {
 
-    @PostMapping
+    @PostMapping("/documents")
     DocumentDTO createDocument(@RequestBody DocumentDTO documentDTO);
 
-    @GetMapping
+    @GetMapping("/documents/documentId")
     DocumentDTO getDocument(@PathVariable UUID documentId);
 
-    @GetMapping
+    @GetMapping("/documents")
     List<DocumentDTO> getDocuments();
 
-    @PostMapping
+    @PostMapping("documents/{documentId}")
     DocumentDTO updateDocument(@PathVariable UUID documentId, @RequestBody DocumentDTO documentDTO);
 
 

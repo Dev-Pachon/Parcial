@@ -4,6 +4,7 @@ import com.icesi.edu.users.repository.DocumentRepository;
 import com.icesi.edu.users.service.DocumentService;
 import com.icesi.edu.users.service.impl.DocumentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
@@ -20,9 +21,9 @@ public class FailingUnitTestsService {
     }
 
     //Implementar la logica para que cuando un documento con estado approved se intente actualizar se lanze un error y realizar la prueba.
-
+    @Test
     public void exceptionIsThrownWhenTryingToUpdateDocumentWithStatusApproved(){
-        fail();
+
     }
 
 

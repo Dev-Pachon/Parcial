@@ -7,10 +7,13 @@ import com.icesi.edu.users.error.exception.DocumentException;
 import com.icesi.edu.users.model.Document;
 import com.icesi.edu.users.repository.DocumentRepository;
 import com.icesi.edu.users.service.DocumentService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.print.Doc;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,7 +21,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
+@AllArgsConstructor
 public class DocumentServiceImpl implements DocumentService {
 
     private final DocumentRepository documentRepository;
@@ -44,7 +48,16 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document updateDocument(Document document) {
-        return documentRepository.save(document);
+        Optional<Document> toUpdate = documentRepository.findById(document.getDocumentId());
+        if (toUpdate.isPresent()){
+            toUpdate.get().setName(document.getName());
+            toUpdate.get().setPriority(document.getPriority());
+            toUpdate.get().setText(document.getText());
+            toUpdate.get().setStatus(document.getStatus());
+
+           return  documentRepository.save(toUpdate.get());
+        }
+        throw new DocumentError(DocumentErrorCode.CODE_02,"UserID not Found");
     }
 
 

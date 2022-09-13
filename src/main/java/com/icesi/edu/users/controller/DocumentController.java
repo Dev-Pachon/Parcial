@@ -1,6 +1,7 @@
 package com.icesi.edu.users.controller;
 
 import com.icesi.edu.users.api.DocumentAPI;
+import com.icesi.edu.users.constant.DocumentStatus;
 import com.icesi.edu.users.dto.DocumentDTO;
 import com.icesi.edu.users.mapper.DocumentMapper;
 import com.icesi.edu.users.service.DocumentService;
@@ -38,5 +39,8 @@ public class DocumentController implements DocumentAPI {
     public DocumentDTO updateDocument(UUID documentId, DocumentDTO documentDTO) {
         return documentMapper.fromDocument(documentService.updateDocument(documentMapper.fromDTO(documentId,documentDTO)));
     }
+
+
+
 
 }
